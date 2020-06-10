@@ -38,8 +38,8 @@ RUN git clone --recursive https://github.com/named-data/ndn-tools.git \
     && ./waf configure \
     && ./waf \
     && ./waf install \
-    $$ cd .. \
-    $$ rm -rf ndn-tools
+    && cd .. \
+    && rm -rf ndn-tools
 
 # initial configuration
 RUN cp /usr/local/etc/ndn/nfd.conf.sample /usr/local/etc/ndn/nfd.conf \
