@@ -4,8 +4,8 @@ ARG VERSION_NFD=NFD-0.7.0
 ARG VERSION_UTIL=ndn-tools-0.7
 
 # install tools
-RUN  apt update \
-     && apt install -y git build-essential
+RUN apt update \
+    && apt install -y git build-essential
 
 # install ndn-cxx and NFD dependencies
 RUN apt install -y python libsqlite3-dev libboost-all-dev libssl-dev pkg-config libpcap-dev
@@ -18,7 +18,7 @@ RUN git clone https://github.com/named-data/ndn-cxx.git \
     && ./waf \
     && ./waf install \
     && cd .. \
-    && rm -Rf ndn-cxx \
+    && rm -rf ndn-cxx \
     && ldconfig
 
 # install NFD
@@ -29,7 +29,7 @@ RUN git clone --recursive https://github.com/named-data/NFD \
     && ./waf \
     && ./waf install \
     && cd .. \
-    && rm -Rf NFD
+    && rm -rf NFD
 
 # install ndn-tools
 RUN git clone --recursive https://github.com/named-data/ndn-tools.git \
@@ -39,7 +39,7 @@ RUN git clone --recursive https://github.com/named-data/ndn-tools.git \
     && ./waf \
     && ./waf install \
     $$ cd .. \
-    $$ rm -Rf ndn-tools
+    $$ rm -rf ndn-tools
 
 # initial configuration
 RUN cp /usr/local/etc/ndn/nfd.conf.sample /usr/local/etc/ndn/nfd.conf \
